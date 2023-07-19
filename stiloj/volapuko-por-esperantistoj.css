@@ -1,0 +1,254 @@
+:root {
+  --unua-koloro: hsl(300, 100%, 20%);
+  --dua-koloro: hsl(60, 100%, 90%);
+  --table-background: hsla(60, 100%, 90%, 0.5);
+  --font-size: 112.5%;
+  --t1: 3.052rem;
+  --t2: 2.441rem;
+  --t3: 1.953rem;
+  --t4: 1.563rem;
+  --t5: 1.25rem;
+  --s: 0.8rem;
+  --page-size: 210mm 297mm;
+  --kovrilbildo: url("./kovrilbildoj/volapuko-por-esperantistoj.png");
+  /* --ratio: 1.250; */
+  /* --T5: calc(var(--font-size) * calc(var(--ratio) * 2)); */
+  /* --T4: calc(var(--font-size) * calc(var(--ratio) * 3)); */
+  /* --T3: calc(var(--font-size) * calc(var(--ratio) * 4)); */
+  /* --T2: calc(var(--font-size) * calc(var(--ratio) * 5)); */
+  /* --T1: calc(var(--font-size) * calc(var(--ratio) * 6)); */
+}
+
+@page {
+  size: var(--page-size, portrait);
+  margin: 2cm;
+  /* size: portrait; */
+}
+
+@page {
+  @top-right {
+    content: string(heading);
+    width: 100%;
+    font-size: var(--s);
+    color: hsl(300, 100%, 20%);
+    font-weight: bold;
+    border-bottom: solid 1px hsl(300, 100%, 20%);
+    margin-bottom: 20px;
+  }
+
+  @bottom-center {
+    content: counter(page);
+    width: 100%;
+    font-size: var(--s);
+    color: var(--unua-koloro);
+    font-weight: bold;
+    border-top: solid 1px hsl(300, 100%, 20%);
+  }
+}
+
+@page :first {
+  /* background-color: var(--unesma-koloro); */
+  background-image: var(--kovrilbildo);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: var(--page-size);
+
+  @bottom-center {
+    content: none;
+  }
+  @top-right {
+    content: none;
+  }
+}
+
+@page :blank {
+  @top-right {
+    content: none;
+  }
+
+  @bottom-center {
+    content: none;
+  }
+}
+
+@page clean {
+  @top-right {
+    content: none;
+  }
+
+  @bottom-center {
+    content: none;
+  }
+}
+
+@page h1 {
+  @top-right {
+    content: none;
+  }
+}
+
+html {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  line-height: 1.5;
+  font-size: var(--font-size);
+  text-align: justify;
+}
+body {
+  margin: 0;
+}
+
+h1 {
+  page: h1;
+  break-before: page;
+  font-size: var(--t1);
+  font-weight: normal;
+  margin: auto;
+  margin-bottom: 1rem;
+  text-align: center;
+  background-color: var(--unua-koloro);
+  color: var(--dua-koloro);
+}
+
+h2 {
+  string-set: heading content();
+  font-size: var(--t2);
+  font-variant: small-caps;
+  font-weight: bold;
+  margin: auto;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--unua-koloro);
+  border-bottom: solid 2px hsl(300, 100%, 20%);
+}
+
+h3 {
+  margin-bottom: .5rem;
+  font-size: var(--t3);
+  color: var(--unua-koloro);
+  text-decoration: underline;
+  text-align: center;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+p {
+  text-indent: 20px;
+}
+
+li p {
+  text-indent: 0;
+}
+
+li {
+ color: hsl(0, 0%, 20%);
+}
+
+
+#title-block-header {
+  color: transparent;
+}
+
+#title-block-header > * {
+  background-color: transparent;
+  color: inherit;
+}
+
+/* Table */
+
+strong {
+  color: var(--unua-koloro);
+}
+
+table {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-collapse: collapse;
+  background-color: var(--table-background);
+  font-weight: bold;
+}
+th {
+  background-color: var(--unua-koloro);
+  color: var(--dua-koloro);
+  text-transform: uppercase;
+}
+td {
+  color: var(--unua-koloro);
+  border-bottom: solid 1px hsl(300, 100%, 20%);
+}
+td,
+th {
+  padding: 3px 20px;
+}
+
+/* Table of content */
+
+nav {
+  break-before: right;
+  position: relative;
+  margin-left: -0.5em;
+  background: none;
+  page: clean;
+}
+nav ul {
+  margin-top: 0;
+  list-style-type: none;
+}
+
+nav ul li {
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  padding-bottom: .5em;
+  width: 100%;
+  border-bottom: dotted 3px hsl(0, 0%, 80%);
+}
+
+nav ul li a {
+  display: block;
+}
+
+nav ul li a::after {
+  content: target-counter(attr(href url), page, decimal);
+  float: right;
+}
+
+nav code {
+  background: none;
+}
+
+nav a {
+  text-decoration: none;
+  outline: none;
+  color: var(--unua-koloro);
+  font-weight: bold;
+}
+
+blockquote {
+  color: #666666;
+  margin: 0;
+  padding-left: 0.5em;
+  border-left: 0.5em #EEE solid;
+}
+
+hr {
+  margin-bottom: 30px;
+  border-bottom: solid 1px hsl(300, 100%, 20%);
+}
+
+.rakonto:not(:first-of-type) {
+  break-before: page;
+  color: var(--unua-koloro);
+}
+
+
+.rakonto h2 {
+  border: none;
+}
+
+.rakonto table {
+  width: 100%;
+}
