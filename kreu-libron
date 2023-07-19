@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+dosiero=$1
+IFS="."
+read -a nomo <<< "$dosiero"
+
+pandoc ${nomo[0]}.md \
+	--toc --toc-depth=1 \
+  --standalone \
+  --pdf-engine=weasyprint \
+  -o libroj/pdf/${nomo[0]}.pdf
+
+pandoc ${nomo[0]}.md \
+  --standalone \
+  -o libroj/epub/${nomo[0]}.epub
+
+# if [[ $dosiero == "pdf" ]]; then
+# 	pandoc parti/*.md \
+# 		--toc --toc-depth=2 \
+# 		--standalone \
+# 		--pdf-engine=weasyprint \
+# 		-o dosieri/mikra-vortaro.pdf
+# elif [[ $dosiero == "epub" ]]; then
+# 	pandoc parti/*.md \
+# 		--metadata-file=metadata.yaml \
+# 		--toc --toc-depth=2 \
+# 		--standalone \
+# 		-o dosieri/mikra-vortaro.epub
+# else
+# 	exit 1
+# fi
+#
